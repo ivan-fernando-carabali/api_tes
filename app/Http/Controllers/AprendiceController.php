@@ -8,8 +8,15 @@ use Illuminate\Http\Request;
 
 class AprendiceController extends Controller
 {
-    public function index():JsonResponse{
-        return response()->json( Aprendice::with(['computer', 'course'])->get() );
+    public function index()
+    {
+
+           // $category = Category::included()->findOrFail(2);
+        // $categories=Category::included()->get();
+      //  $categories=Category::included()->filter()->sort()->get();
+        $aprendices=Aprendice::included()->filter()->sort()->getOrPaginate();
+        //$categories=Category::included()->filter()->get();
+      //  return response()->json( Aprendice::with(['computer', 'course'])->get() );
 
 
     }

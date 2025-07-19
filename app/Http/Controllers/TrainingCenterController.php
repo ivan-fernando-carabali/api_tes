@@ -15,13 +15,18 @@ public function index()
 public function store(Request $request)
 {
     $data = $request->validate([
-'number' => 'required|string|max:255|unique:training_centers,number',
-'location' => 'required|string|max:255',
+        'name' => 'required|string|max:255|unique:training_centers,name',
+        'location' => 'required|string|max:255',
     ]);
 
-    $trainingCenter = TrainingCenter::create($data);
-    return response()->json($trainingCenter, 201);
+    TrainingCenter::create([
+        'name' => $data['name'],
+        'location' => $data['location'],
+
+    ]);
+    return response()->json($data, 201);
 }
+
 public function show($id)
 {
     $trainingCenter = TrainingCenter::with(['courses', 'teachers'])->findOrFail($id);
@@ -30,7 +35,7 @@ public function show($id)
 public function update(Request $request, $id)
 {
     $data = $request->validate([
-        'number' => 'required|string|max:255|unique:training_centers,number,' . $id,
+        'name' => 'required|string|max:255|unique:training_centers,' . $id,
         'location' => 'required|string|max:255',
     ]);
 

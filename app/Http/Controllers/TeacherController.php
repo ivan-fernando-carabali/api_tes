@@ -8,7 +8,7 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        return response()->json(Teacher::with(['courses', 'area','trainingCenter'])->get());
+        return response()->json(Teacher::with([ 'area','trainingCenter'])->get());
     }
     public function store(Request $request)
     {
@@ -25,7 +25,7 @@ class TeacherController extends Controller
     }
     public function show($id)
     {
-        return response()->json(Teacher::with(['courses', 'area','trainingCenter'])->findOrFail($id));
+        return response()->json(Teacher::with([ 'area','trainingCenter'])->findOrFail($id));
     }
     public function update(Request $request, $id)
     {

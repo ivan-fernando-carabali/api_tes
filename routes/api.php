@@ -10,41 +10,53 @@ use App\Http\Controllers\AprendiceController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\ComputerController;
 
+Route::prefix('v1')->group(function () {
+    Route::get('/computers', [ComputerController::class, 'index']);
+    Route::post('/computers', [ComputerController::class, 'store']);
+    Route::get('/computers/{id}', [ComputerController::class, 'show']);
+    Route::put('/computers/{id}', [ComputerController::class, 'update']);
+    Route::delete('/computers/{id}', [ComputerController::class, 'destroy']);
+});
+Route::prefix('v1')->group(function () {
+Route::get('/training-centers', [TrainingCenterController::class, 'index'])->name('training-centers.index');
+Route::post('/training-centers', [TrainingCenterController::class, 'store'])->name('training-centers.store');
+Route::get('/training-centers/{id}', [TrainingCenterController::class, 'show'])->name('training-centers.show');
+Route::put('/training-centers/{id}', [TrainingCenterController::class, 'update'])->name('training-centers.update');
+Route::delete('/training-centers/{id}', [TrainingCenterController::class, 'destroy'])->name('training-centers.destroy');
+});
+Route::prefix('v1')->group(function () {
+Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
+Route::get('/courses/{id}', [CourseController::class, 'show'])->name('courses.show');
+Route::put('/courses/{id}', [CourseController::class, 'update'])->name('courses.update');
+Route::delete('/courses/{id}', [CourseController::class, 'destroy'])->name('courses.destroy');
+});
+Route::prefix('v1')->group(function () {
+Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
+Route::post('/teachers', [TeacherController::class, 'store'])->name('teachers.store');
+Route::get('/teachers/{id}', [TeacherController::class, 'show'])->name('teachers.show');
+Route::put('/teachers/{id}', [TeacherController::class, 'update'])->name('teachers.update');
+Route::delete('/teachers/{id}', [TeacherController::class, 'destroy'])->name('teachers.destroy');
+});
+Route::prefix('v1')->group(function () {
+Route::get('/aprendices', [AprendiceController::class, 'index'])->name('aprendices.index');
+Route::post('/aprendices', [AprendiceController::class, 'store'])->name('aprendices.store');
+Route::get('/aprendices/{id}', [AprendiceController::class, 'show'])->name('aprendices.show');
+Route::put('/aprendices/{id}', [AprendiceController::class, 'update'])->name('aprendices.update');
+Route::delete('/aprendices/{id}', [AprendiceController::class, 'destroy'])->name('aprendices.destroy');
+});
+Route::prefix('v1')->group(function () {
+Route::get('/areas', [AreaController::class, 'index']);
+Route::post('/areas', [AreaController::class, 'store']);
+Route::get('/areas/{id}', [AreaController::class, 'show']);
+Route::put('/areas/{id}', [AreaController::class, 'update']);
+Route::delete('/areas/{id}', [AreaController::class, 'destroy']);
+});
 
 
-route::get('/training-centers', [TrainingCenterController::class, 'index'])->name('training-centers.index');
-route::post('/training-centers', [TrainingCenterController::class, 'store'])->name('training-centers.store');
-route::get('/training-centers/{id}', [TrainingCenterController::class, 'show'])->name('training-centers.show');
-route::put('/training-centers/{id}', [TrainingCenterController::class, 'update'])->name('training-centers.update');
-route::delete('/training-centers/{id}', [TrainingCenterController::class, 'destroy'])->name('training-centers.destroy');
 
-route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
-route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
-route::get('/courses/{id}', [CourseController::class, 'show'])->name('courses.show');
-route::put('/courses/{id}', [CourseController::class, 'update'])->  name('courses.update');
-route::delete('/courses/{id}', [CourseController::class, 'destroy'])->name('courses.destroy');
 
-route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
-route::post('/teachers', [TeacherController::class, 'store'])->name('teachers.store');
-route::get('/teachers/{id}', [TeacherController::class, 'show'])->name('teachers.show');
-route::put('/teachers/{id}', [TeacherController::class, 'update'])->name('teachers.update');
-route::delete('/teachers/{id}', [TeacherController::class, 'destroy'])->name('teachers.destroy');
 
-route::get('/aprendices', [AprendiceController::class, 'index'])->name('aprendices.index');
-route::post('/aprendices', [AprendiceController::class, 'store'])->name('aprendices.store');
-route::get('/aprendices/{id}', [AprendiceController::class, 'show'])->name('aprendices.show');
-route::put('/aprendices/{id}', [AprendiceController::class, 'update'])->name('aprendices.update');
-route::delete('/aprendices/{id}', [AprendiceController::class, 'destroy'])->name('aprendices.destroy');
 
-route::get('/areas', [AreaController::class, 'index'])->name('areas.index');
-route::post('/areas', [AreaController::class, 'store'])->name('areas.store');
-route::get('/areas/{id}', [AreaController::class, 'show'])->name('areas.show');
-route::put('/areas/{id}', [AreaController::class, 'update'])->name('areas.update');
-route::delete('/areas/{id}', [AreaController::class, 'destroy'])->name('areas.destroy');
 
-route::get('/computers', [ComputerController::class, 'index'])->name('computers.index');
-route::post('/computers', [ComputerController::class, 'store'])->name('computers.store');
-route::get('/computers/{id}', [ComputerController::class, 'show'])->name('computers.show');
-route::put('/computers/{id}', [ComputerController::class, 'update'])->name('computers.update');
-route::delete('/computers/{id}', [ComputerController::class, 'destroy'])->name('computers.destroy');
 

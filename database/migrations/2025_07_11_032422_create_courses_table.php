@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('training_center_id');
             $table->foreign('training_center_id')->references('id')->on('training_centers')->onDelete('cascade')->onUpdate('cascade');
 
+
             $table->timestamps();
         });
     }

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Models\Area;
 
 class AreaController extends Controller
 {
   public function index()
   {
-return response()->json(Area::with(['courses', 'teachers'])->get());
+return response()->json(Area::all());
   }
     public function store(Request $request)
     {
@@ -24,7 +25,7 @@ return response()->json(Area::with(['courses', 'teachers'])->get());
 
     public function show($id)
     {
-        return response()->json(Area::with(['courses', 'teachers'])->findOrFail($id));
+        return response()->json(Area::findOrFail($id));
     }
     public function update(Request $request, $id)
     {
@@ -34,5 +35,14 @@ return response()->json(Area::with(['courses', 'teachers'])->get());
         ]);
         $area->update($data);
         return response()->json($area);
+
+}
+ public function destroy($id):JsonResponse
+    {
+        $area = Area::findOrFail($id);
+        $area->delete();
+        return response()->json([
+            'message' => 'Area eliminado correctamente.'
+        ], 204);
 }
 }

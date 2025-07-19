@@ -9,14 +9,14 @@ class Computer extends Model
     protected $table = 'computers';
 
     protected $fillable = [
-        'name',
+        'number',
         'brand',
 
 
 
     ];
 
- 
+
     public function aprendices()
     {
         return $this->hasOne(Aprendice::class);

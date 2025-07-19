@@ -8,7 +8,7 @@ class CourseController extends Controller
 {
     public function index()
     {
-        return response()->json(Course::with(['aprendices', 'teacher','training_center'])->get());
+        return response()->json(Course::with([ 'area','training_center'])->get());
     }
 
     public function store(Request $request)
@@ -18,6 +18,7 @@ class CourseController extends Controller
           'day' => 'required|string|max:255',
           'area_id' => 'required|exists:areas,id',
           'training_center_id' => 'required|exists:training_centers,id',
+
         ]);
 
         $course = Course::create($data);
@@ -27,7 +28,7 @@ class CourseController extends Controller
 
     public function show($id)
     {
-        return response()->json(Course::with(['aprendices', 'teacher','training_center'])->findOrFail($id));
+        return response()->json(Course::with(['area','training_center'])->findOrFail($id));
     }
 
     public function update(Request $request, $id)
@@ -36,8 +37,9 @@ class CourseController extends Controller
         $data = $request->validate([
           'course_number' => 'required|string|max:255|unique:courses,course_number',
           'day' => 'required|string|max:255',
-          'area_id' => 'required|exists:areas,id',
+           'area_id' => 'required|exists:areas,id',
           'training_center_id' => 'required|exists:training_centers,id',
+
         ]);
         $course->update($data);
         return response()->json($course);

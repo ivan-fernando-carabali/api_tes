@@ -9,16 +9,16 @@ class ComputerController extends Controller
 {
     public function index()
     {
-        return response()->json(Computer::with(['aprendices'])->get());
+        return response()->json(Computer::all());
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|string|max:255|unique:computers,name',
+            'number' => 'required|string|max:255|unique:computers,number',
             'brand' => 'required|string|max:255',
 
-            'aprendices_id' => 'required|exists:aprendices,id',
+
         ]);
 
         $computer = Computer::create($data);
@@ -28,17 +28,17 @@ class ComputerController extends Controller
 
     public function show($id)
     {
-        return response()->json(Computer::with(['aprendices'])->findOrFail($id));
+        return response()->json(Computer::findOrFail($id));
     }
 
     public function update(Request $request, $id)
     {
         $computer = Computer::findOrFail($id);
         $data = $request->validate([
-            'name' => 'sometimes|required|string|max:255|unique:computers,name,' . $id,
+            'number' => 'sometimes|required|string|max:255|unique:computers,number,' . $id,
             'brand' => 'required|string|max:255',
 
-            'aprendices_id' => 'required|exists:aprendices,id',
+
         ]);
         $computer->update($data);
         return response()->json($computer);
